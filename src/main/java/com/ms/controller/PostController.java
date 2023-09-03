@@ -48,7 +48,7 @@ public class PostController {
        List<PostDto> post= postService.getAllPost();
        return post;
     }
-   @GetMapping("/{technology}")
+   @GetMapping("/cat/{technology}")
    public List<PostDto> getPostByTechnology(@PathVariable String technology) {
       List<PostDto> posts= postService.getPostsByTechnology(technology);
       return posts;
