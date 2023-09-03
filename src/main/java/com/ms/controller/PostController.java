@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,13 +28,36 @@ public class PostController {
 
 	@Autowired
 	private PostRepo postRepo;
+    // create post
+    @PostMapping("/user/{userid}")
+    public PostDto create(@RequestBody PostDto dto, @PathVariable String userid) {
+        PostDto createpost = postService.createPost(dto, userid);
+        return createpost;
+    }
+    //update post
+    @PutMapping("/{postId}")
+    public PostDto updatePost(@RequestBody PostDto dto,@PathVariable String postId) {
+      PostDto updatepost=  postService.updatePost(dto, postId);
+      return updatepost;
+    }
+    
+    
+    //get All post
+   @GetMapping("/allpost") 
+    public List<PostDto> getAllPost() {
+       List<PostDto> post= postService.getAllPost();
+       return post;
+    }
+   @GetMapping("/{technology}")
+   public List<PostDto> getPostByTechnology(@PathVariable String technology) {
+      List<PostDto> posts= postService.getPostsByTechnology(technology);
+      return posts;
+   }
 
-	@PostMapping("/user/{userid}/post")
-	public ResponseEntity<PostDto> create(@RequestBody PostDto dto, @PathVariable String userid) {
-		PostDto createpost = postService.createPost(dto, userid);
-		return new ResponseEntity<PostDto>(createpost, HttpStatus.CREATED);
-	}
-
+	
+	
+	// here some api directly call by repo
+	
 	@GetMapping("/{status}")
 	public List<Post> getByStatus(@PathVariable String status) {
 		Sort sort = Sort.by("postDate");

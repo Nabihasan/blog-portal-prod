@@ -10,14 +10,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PostDto {
 
-	private String postId;
 	private String title;
 
 	private String content;
 
 	private Date postDate;
+	
 	private String status;
-	private CategoryDto category;
+	
+	private String technology;
+	
 
 	private UserDto user;
 }

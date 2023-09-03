@@ -29,26 +29,16 @@ public class Post {
 	
 	private String status;
 	
-	private String report;
+	private String technology;
 	
-	private List<Integer> like;
 	
-	private List<Integer> unlike;
-	
-	private List<Comment> comment;
-	
-
-//	@DBRef
-//	User user;
 
 	@DBRef
-	Category category;
+	User user;
+
+	
 
 
-	public void setUser(User user) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	
 }
