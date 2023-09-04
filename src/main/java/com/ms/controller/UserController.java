@@ -19,7 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ms.dto.LoginRequest;
 import com.ms.dto.UserDto;
 import com.ms.entity.User;
-
+import com.ms.exception.EmailExistException;
+import com.ms.exception.IncorrectPasswordException;
+import com.ms.exception.UserNotFoundException;
+import com.ms.outdto.LoginResponse;
+import com.ms.outdto.SignupResponse;
 import com.ms.service.UserService;
 
 import jakarta.validation.Valid;
@@ -35,11 +39,28 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@ResponseStatus(HttpStatus.OK)
 	@PostMapping("/register")
-	public User createUser(@RequestBody @Valid UserDto userDto) {
-		return userService.createUser(userDto);
+	public SignupResponse userRegister(@RequestBody @Valid final UserDto userDto) {
+
+		SignupResponse response = userService.register(userDto);
+
+		return response;
+
 	}
+
+	@PostMapping("/login")
+	public LoginResponse login(@RequestBody final LoginRequest request) {
+
+		LoginResponse response = userService.login(request);
+		return response;
+
+	}
+
+//	@ResponseStatus(HttpStatus.OK)
+//	@PostMapping("/register")
+//	public User createUser(@RequestBody @Valid UserDto userDto) {
+//		return userService.createUser(userDto);
+//	}
 
 //	@PostMapping
 //	public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
@@ -72,16 +93,16 @@ public class UserController {
 //
 //	}
 
-	@PostMapping("/login")
-	public ResponseEntity<String> userLogin(@RequestBody LoginRequest loginRequest) {
-
-		if (userService.loginUser(loginRequest) == null) {
-
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("incorrect login ID");
-
-		}
-		return ResponseEntity.ok(userService.loginUser(loginRequest).getFirstName() + "  login Successfully");
-
-	}
+//	@PostMapping("/login")
+//	public ResponseEntity<String> userLogin(@RequestBody LoginRequest loginRequest) {
+//
+//		if (userService.loginUser(loginRequest) == null) {
+//
+//			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("incorrect login ID");
+//
+//		}
+//		return ResponseEntity.ok(userService.loginUser(loginRequest).getFirstName() + "  login Successfully");
+//
+//	}
 
 }

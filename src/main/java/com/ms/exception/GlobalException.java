@@ -39,4 +39,17 @@ public class GlobalException {
 	public String existEmail(EmailExistException emailExitException) {
 		return  emailExitException.getMessage();
 	}
+	
+	  @ExceptionHandler(UserNotFoundException.class)
+	    public CustomErrorResponse handleUserNotFoundException(
+	            final UserNotFoundException ex) {
+	        return new CustomErrorResponse(false, "User not found");
+	    }
+
+	  
+	    @ExceptionHandler(IncorrectPasswordException.class)
+	    public CustomErrorResponse handleIncorrectPasswordException(
+	            final IncorrectPasswordException ex) {
+	        return new CustomErrorResponse(false, "User Credentails are wrong");
+	    }
 }

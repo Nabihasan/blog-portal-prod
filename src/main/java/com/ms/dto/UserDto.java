@@ -24,10 +24,7 @@ public class UserDto {
 	@NotEmpty(message="required")
 	private String password;
 	private String gender;
-	public Object getAbout() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	private String designation;
 
 }
 
