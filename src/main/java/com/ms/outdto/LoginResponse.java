@@ -1,5 +1,7 @@
 package com.ms.outdto;
 
+import com.ms.enume.Role;
+
 public class LoginResponse {
 
 	private String userID;
@@ -8,13 +10,13 @@ public class LoginResponse {
 
 	private String firstname;
 
-	private String role;
+	private Role role;
 
-	public String getRole() {
+	public Role getRole() {
 		return role;
 	}
 
-	public void setRole(final String role) {
+	public void setRole(final Role role) {
 		this.role = role;
 	}
 
