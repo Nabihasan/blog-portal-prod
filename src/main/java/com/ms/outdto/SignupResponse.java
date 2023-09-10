@@ -18,13 +18,13 @@ public class SignupResponse {
 
 	private boolean success;
 
-	private User user;
+//	private User user;
 
 	public Map<String, Object> customReponse() {
 		Map<String, Object> map = new HashMap<>();
 		map.put("message", message);
 		map.put("success", success);
-		map.put("User", user);
+		//map.put("User", user);
 		return map;
 	}
 
